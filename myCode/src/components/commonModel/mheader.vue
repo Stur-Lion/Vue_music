@@ -1,6 +1,7 @@
 <template>
   <div class="header">
-    header
+    <img src="/static/img/logo.jpg" alt="">
+    <span>Lion Music</span>
   </div>
 </template>
 
@@ -16,19 +17,21 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+<style lang="scss" scoped type="text/scss">
+  @import './../../common/conmmon';
+  .header{
+    text-align: center;
+    img{
+      display: inline-block;
+      width: 80px;
+      border-radius: 40px;
+      margin-right: 20px;
+    }
+    span{
+      color: $mainFontColor;
+      font-size: 32px;
+      line-height: 80px;
+      display: inline-block;
+    }
+  }
 </style>
