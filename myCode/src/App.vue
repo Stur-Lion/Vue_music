@@ -1,23 +1,26 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <mheader></mheader>
     <router-view/>
   </div>
 </template>
 
 <script>
+import mheader from 'components/commonModel/mheader'
 export default {
-  name: 'App'
+  name: 'App',
+  components:{
+    mheader
+  }
 }
 </script>
 
-<style>
+<style lang="scss" scoped type="text/css">
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  color: black;
+  font-size: 24px;
 }
 </style>
