@@ -1,6 +1,6 @@
 <template>
   <div class="mainBox">
-    <div class="banner" v-if>
+    <div class="banner">
       <mt-swipe :auto="5000" v-if="recommendData !== ''">
         <mt-swipe-item v-for="(item,index) in recommendData.slider" :key="index" class="itemBaner">
           <img :src="item.picUrl" alt="">

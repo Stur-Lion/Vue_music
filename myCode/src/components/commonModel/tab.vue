@@ -31,18 +31,23 @@ export default {
   @import './../../common/conmmon';
   .tabBox{
     width: 100%;
-    height: 80px;
+    height: 90px;
     font-size: 0;
     .tab-item{
       display: inline-block;
       width: 25%;
       text-align: center;
-      font-size: 24px;
+      font-size: 32px;
       line-height: 80px;
       &.router-link-active{
         color: $mainFontColor;
-        border-bottom:5px solid $mainFontColor;
         box-sizing: border-box;
+        height: 100px;
+        span{
+          display: inline-block;
+          line-height: 60px;
+          border-bottom: 5px solid $mainFontColor;
+        }
       }
     }
   }

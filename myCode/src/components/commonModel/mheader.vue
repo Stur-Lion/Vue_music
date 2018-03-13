@@ -21,6 +21,8 @@ export default {
   @import './../../common/conmmon';
   .header{
     text-align: center;
+    background-color: #5c9aff;
+    height: 120px;
     img{
       display: inline-block;
       width: 80px;
@@ -29,8 +31,8 @@ export default {
     }
     span{
       color: $mainFontColor;
-      font-size: 32px;
-      line-height: 80px;
+      font-size: 40px;
+      line-height: 120px;
       display: inline-block;
     }
   }
