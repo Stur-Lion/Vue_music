@@ -3,6 +3,7 @@ import jsonP from 'jsonp'
 
 export default function jsonp(url, data, option) {
   url += (url.indexOf() < 0 ? '?' : '&') + param(data)
+  console.log(url);
   return new Promise((resolve, reject) => {
     jsonP(url, option, (err, data) =>{
       if (err) {
@@ -20,5 +21,5 @@ function param(data) {
     var v = data[k] !== undefined?data[k]:'';
     url +=`&${k}=${encodeURIComponent(v)}`;
   }
-  return url?url.subSting(1):''
+  return url?url.substring(1):''
 }
