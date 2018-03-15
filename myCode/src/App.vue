@@ -19,10 +19,13 @@ export default {
 
 <style lang="scss" scoped type="text/scss">
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: '楷体', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: black;
   font-size: 24px;
+}
+.mainBox{
+  background-color: rgb(244, 244, 244);
 }
 </style>

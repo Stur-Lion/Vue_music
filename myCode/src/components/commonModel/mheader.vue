@@ -21,8 +21,11 @@ export default {
   @import './../../common/conmmon';
   .header{
     text-align: center;
-    background-color: #5c9aff;
+    background-color: #2f9dff;
     height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     img{
       display: inline-block;
       width: 80px;
