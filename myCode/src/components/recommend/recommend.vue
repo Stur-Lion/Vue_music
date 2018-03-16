@@ -1,7 +1,7 @@
 <template>
   <div class="mainBox">
     <!--轮播图-->
-    <div class="banner">
+    <div class="banner" ref="banner">
       <mt-swipe :auto="5000" v-if="recommendData !== ''">
         <mt-swipe-item v-for="(item,index) in recommendData.slider" :key="index" class="itemBaner">
           <img :src="item.picUrl" @click="slideClick($event,item.linkUrl)">
@@ -44,17 +44,12 @@
     <div class="someSay">
       <a href="#" class="textLink">去客户端发现更多好音乐 ></a>
       <a href="#" class="textLink">查看电脑版网页</a>
-      <div>
-        <span></span>
-        Lion Muisc
-      </div>
-      <p>联系电话：15623544530</p>
     </div>
   </div>
 </template>
 
 <script>
-  import {getRecommendData} from '@/api/recommend'
+  import {getRecommendData} from '@/api/recommend';
 export default {
   name: 'recommend',
   data () {

@@ -6,10 +6,14 @@ import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 import router from './router'
 
+import IScrollView from 'vue-iscroll-view';
+import IScroll from 'iscroll'
+
 import 'lib-flexible'
 import './common/base.css'
 
 Vue.use(MintUI)
+Vue.use(IScrollView, IScroll)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
