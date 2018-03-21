@@ -1,13 +1,20 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <router-view/>
+    <heada></heada>
   </div>
 </template>
 
 <script>
+  import heada from '@/components/head'
 export default {
-  name: 'App'
+  name: 'App',
+  created(){
+
+  },
+  components:{
+    heada
+  }
 }
 </script>
 
