@@ -1,7 +1,9 @@
 <template>
   <div id="app">
-    <mheader></mheader>
-    <tab></tab>
+    <div class="topFloat">
+      <mheader></mheader>
+      <tab></tab>
+    </div>
     <router-view/>
   </div>
 </template>
@@ -24,8 +26,19 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: black;
   font-size: 24px;
+  height: 100%;
 }
-.mainBox{
+.topFloat{
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+#paddingBox{
   background-color: rgb(244, 244, 244);
+  height: 100%;
+  box-sizing: border-box;
+  padding-top: 210px;
+  display: block;
 }
 </style>
