@@ -93,10 +93,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped type="text/scss">
-  .mainBox{
-    height: 100%;
-    overflow-y: hidden;
-  }
   .banner{
     height: 300px;
     background-color: white;

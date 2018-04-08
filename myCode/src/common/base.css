@@ -23,4 +23,8 @@ input{outline: none;border: none;}
 .mint-swipe-indicator.is-active{
    background: red;
  }
+.mainBox{
+  height: 100%;
+  overflow-y: hidden;
+}
 
