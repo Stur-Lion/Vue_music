@@ -8,7 +8,10 @@
               {{item.title}}
             </dt>
             <dd v-for="(ditem , dindex) in item.item" :key="dindex" class="ddItem everyList">
-              {{ditem.name}}
+              <img :src="ditem.avtor" alt="">
+              <span>
+                {{ditem.name}}
+              </span>
             </dd>
           </dl>
         </li>
@@ -108,15 +111,26 @@ export default {
     line-height: 60px;
     background-color: #ffffff;
     .everyList{
-      height: 60px;
-      line-height: 60px;
+      height: 120px;
+      line-height: 120px;
       padding-left: 30px;
     }
     .Dtitle{
       background: #e6e6e6;
+      height: 50px;
+      line-height: 50px;
     }
     .ddItem{
-
+      img{
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        border-radius: 100px;
+      }
+      span{
+        padding-left: 20px;
+        font-size: 28px;
+      }
     }
   }
 }

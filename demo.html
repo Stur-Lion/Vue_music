@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./echarts.min.js"></script>
+</head>
+<body>
+<div id="demo" style="width: 60%;height: 500px;border: 1px solid #000;"></div>
+</body>
+</html>
+<script>
+    var eChartsObj = {
+        point : [],
+        linkArr : [],
+        curveness: 0.3
+    };
+    var result = ['节点1','节点2','节点3','节点4','节点5']
+    getPoint(10,10,10,result.length,result)
+    console.log(eChartsObj);
+    var myChart = echarts.init(document.getElementById('demo'));
+    var option = option = option = {
+        title: {
+            text: 'Graph 简单示例'
+        },
+        left:'left',
+        tooltip: {},
+        animationDurationUpdate: 1500,
+        animationEasingUpdate: 'quinticInOut',
+        series : [
+            {
+                type: 'graph',
+                layout: 'none',
+                symbolSize: 100,
+                roam: true,
+                //symbol:'pin',  //节点形状
+                symbolRotate:100,
+                label: {
+                    normal: {
+                        show: true
+                    }
+                },
+                edgeSymbol: ['circle', 'arrow'],
+                edgeSymbolSize: [0, 0],
+                edgeLabel: {
+                    normal: {
+                        textStyle: {
+                            fontSize: 20
+                        }
+                    }
+                },
+                data: eChartsObj.point,
+                links: eChartsObj.linkArr,
+                lineStyle: {
+                    normal: {
+                        opacity: 0.9,
+                        width: 5,
+                        curveness: eChartsObj.curveness
+                    }
+                }
+            }
+        ]
+    };
+    myChart.setOption(option);
+    setTimeout(function () {
+        window.onresize = function () {
+            myChart.resize()
+        }
+    },200)
+
+
+    function getPoint(r, ox, oy, count,nameArr){
+        var radians = (Math.PI / 180) * Math.round(360 / count);
+        console.log(radians);
+        for(i = 0; i < count; i++){
+            var xIndex = ox + r * Math.sin(radians * i),
+                yIndex = oy - r * Math.cos(radians * i);
+
+            eChartsObj.point.push({
+                name: nameArr[i],
+                x: xIndex,
+                y: yIndex}
+                );
+            if(i < nameArr.length-1){
+                var nextName = nameArr[i+1]
+            }else{
+                var nextName = nameArr[0]
+            }
+            eChartsObj.linkArr = eChartsObj.linkArr.concat([
+                {
+                    source: nameArr[i],
+                    target: nextName
+                },{
+                    source: nameArr[i],
+                    target: '中心点',
+                    symbolSize: [0, 20],
+                    lineStyle: {
+                        normal: {
+                            curveness: 0
+                        }
+                    }
+                }
+            ])
+        }
+        eChartsObj.point.push({
+            name: '中心点',
+            x: 10,
+            y: 10
+        })
+        if(count < 5){
+            if(count ==2){
+                eChartsObj.curveness = 0.9
+            }else{
+                eChartsObj.curveness = (1.2/count) + 0.1
+            }
+        }
+    }
+</script>
+<!--<script>
+    var myChart = echarts.init(document.getElementById('demo'));
+    var option = {
+        title:{
+            text: '123',
+            left: 'center',
+            top: 'middle'
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        /*legend: {
+            orient: 'vertical',
+            x: 'left',
+            data:['直达','营销广告','搜索引擎','邮件营销','联盟广告','视频广告','百度','谷歌','必应','其他']
+        },*/
+        series: [
+            {
+                name:'访问来源',
+                type:'pie',
+                selectedMode: 'single',
+                radius: ['25%', '40%'],
+
+                label: {
+                    normal: {
+                        position: 'inner'
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data:[
+                    {value:200, name:'本科一'},
+                    {value:135, name:'本科二'},
+                    {value:160, name:'职业一'},
+                    {value:150, name:'职业二'},
+                    {value:234, name:'直本一'},
+                    {value:70, name:'专科一'},
+                    {value:65, name:'专科二'},
+                ]
+            },
+            {
+                name:'访问来源',
+                type:'pie',
+                radius: ['40%', '55%'],
+                /*label: {
+                    normal: {
+                        formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                        backgroundColor: '#eee',
+                        borderColor: '#aaa',
+                        borderWidth: 1,
+                        borderRadius: 4,
+                        // shadowBlur:3,
+                        // shadowOffsetX: 2,
+                        // shadowOffsetY: 2,
+                        // shadowColor: '#999',
+                        // padding: [0, 7],
+                        rich: {
+                            a: {
+                                color: '#999',
+                                lineHeight: 22,
+                                align: 'center'
+                            },
+                            // abg: {
+                            //     backgroundColor: '#333',
+                            //     width: '100%',
+                            //     align: 'right',
+                            //     height: 22,
+                            //     borderRadius: [4, 4, 0, 0]
+                            // },
+                            hr: {
+                                borderColor: '#aaa',
+                                width: '100%',
+                                borderWidth: 0.5,
+                                height: 0
+                            },
+                            b: {
+                                fontSize: 16,
+                                lineHeight: 33
+                            },
+                            per: {
+                                color: '#eee',
+                                backgroundColor: '#334455',
+                                padding: [2, 4],
+                                borderRadius: 2
+                            }
+                        }
+                    }
+                },*/
+                data:[
+                    {value:335, name:'本科'},
+                    {value:310, name:'职业证书'},
+                    {value:234, name:'直本'},
+                    {value:135, name:'专科'}
+                ]
+            }
+        ]
+    };
+    myChart.setOption(option);
+    setTimeout(function () {
+        window.onresize = function () {
+            myChart.resize()
+        }
+    },200)
+</script>-->
