@@ -16,6 +16,17 @@
           </dl>
         </li>
       </ul>
+      <!--shortList-->
+      <div id="shortListBox" @touchstart="onShortTouch($event)">
+        <ul>
+          <li
+            v-for="(item ,index) in shortList"
+            :key="index"
+            :index="index">
+            {{item.title.substr(0,1)}}
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -24,12 +35,19 @@
   import {getSingerData} from '@/api/singer';
   import BScroll from 'better-scroll'
   import Singer from '@/common/js/singer'
-export default {
+  import {attrDom} from "@/common/js/common";
+
+  export default {
   name: 'singer',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
       singerList:''
+    }
+  },
+  computed: {
+    shortList:function () {
+      return this.singerList
     }
   },
   methods: {
@@ -91,6 +109,9 @@ export default {
       })
 
       return hot.concat(ret)
+    },
+    onShortTouch: function (e) {
+      console.log(attrDom(e.target,'index'));
     }
   },
   created() {
@@ -104,7 +125,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped type="text/scss">
-.singerList{
+  .singerList{
   li{
     width: 100%;
     display: block;
@@ -134,4 +155,19 @@ export default {
     }
   }
 }
+  #shortListBox{
+    position: fixed;
+    right: 0;
+    top: 250px;
+    background: #97cbf5;
+    width: 30px;
+    padding: 15px 0;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    li{
+      color: white;
+      text-align: center;
+      line-height: 40px;
+    }
+  }
 </style>
