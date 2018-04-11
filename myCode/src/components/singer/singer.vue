@@ -1,8 +1,8 @@
 <template>
   <div id="paddingBox">
     <div class="mainBox" ref="singerList">
-      <ul class="content singerList">
-        <li v-for="(item,index) in singerList" :key="index">
+      <ul class="content singerList" ref="singerUL">
+        <li v-for="(item,index) in singerList" :key="index" ref="dTitle">
           <dl>
             <dt class="Dtitle everyList">
               {{item.title}}
@@ -17,7 +17,7 @@
         </li>
       </ul>
       <!--shortList-->
-      <div id="shortListBox" @touchstart="onShortTouch($event)">
+      <div id="shortListBox" @touchstart="onShortTouch">
         <ul>
           <li
             v-for="(item ,index) in shortList"
@@ -42,7 +42,8 @@
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      singerList:''
+      singerList:'',
+      heigthArr:[]
     }
   },
   computed: {
@@ -55,7 +56,7 @@
       var that = this;
       getSingerData().then(function (res) {
         that.singerList = that._dataSort(res.data.list);
-        console.log(that.singerList);
+        //console.log(that.singerList);
       }).catch(function (res) {
         console.log(res);
       })
@@ -111,7 +112,28 @@
       return hot.concat(ret)
     },
     onShortTouch: function (e) {
-      console.log(attrDom(e.target,'index'));
+      var index = attrDom(e.target,'index')
+      console.log(this.heigthArr[index]);
+      this.$refs.singerUL.scrollTo(
+        0,
+        this.heigthArr[index]+'px',
+        1000
+      )
+    }
+  },
+  watch: {
+    singerList(){
+      var that = this;
+      setTimeout(() => {
+        var dTitleList = this.$refs.dTitle;
+        var initHeight = 0,heigthArr = [initHeight];
+        dTitleList.forEach((item,index) => {
+          initHeight += item.clientHeight
+          heigthArr.push(initHeight)
+        })
+        that.heigthArr = heigthArr
+        console.log(that.heigthArr);
+      },20)
     }
   },
   created() {
@@ -158,7 +180,7 @@
   #shortListBox{
     position: fixed;
     right: 0;
-    top: 250px;
+    top: 300px;
     background: #97cbf5;
     width: 30px;
     padding: 15px 0;
